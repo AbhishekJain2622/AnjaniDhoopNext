@@ -1,12 +1,16 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, Youtube, Twitter, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const sectionRef = useRef(null);
+  const formRef = useRef(null); // Ref added specifically for the HTML form element
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false); // Handles loading/disabled state during submission
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -14,19 +18,39 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setFormState({ name: '', email: '', subject: '', message: '' });
+    setIsSending(true);
+
+    // Replace these placeholder strings with your actual EmailJS keys from your EmailJS Dashboard
+    const SERVICE_ID = 'YOUR_SERVICE_ID';
+    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, {
+        publicKey: PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          setIsSending(false);
+          setSubmitted(true);
+          setFormState({ name: '', email: '', subject: '', message: '' });
+          setTimeout(() => setSubmitted(false), 5000);
+        },
+        (error) => {
+          setIsSending(false);
+          alert('Failed to send message. Please try again or reach out directly via email.');
+          console.error('EmailJS Error:', error);
+        }
+      );
   };
 
   const contactInfo = [
     {
       icon: Phone,
       label: 'Phone',
-      value: ['+91 6265854399,8109313338'],
+      value: '+91 6265854399, 8109313338',
       sub: 'Mon–Sat, 9am–6pm IST',
     },
-    
     {
       icon: Mail,
       label: 'Email',
@@ -37,10 +61,10 @@ export default function Contact() {
       icon: MapPin,
       label: 'Address',
       value: 'Kishori Sadan Ratanganj',
-      sub: 'Bijawar Dist. Chhatarpur, 471405,Madhya Pradesh, India',
+      sub: 'Bijawar Dist. Chhatarpur, 471405, Madhya Pradesh, India',
     },
   ];
- 
+
   return (
     <section
       id="contact"
@@ -76,8 +100,7 @@ export default function Contact() {
             className="font-playfair text-5xl md:text-6xl font-bold mb-4"
             style={{ color: 'var(--cream)' }}
           >
-            Connect{' '}
-            <span className="gradient-text-gold">With Us</span>
+            Connect <span className="gradient-text-gold">With Us</span>
           </h2>
           <p
             className="font-cormorant text-xl max-w-xl mx-auto"
@@ -99,8 +122,7 @@ export default function Contact() {
               className="font-playfair text-3xl font-semibold mb-8"
               style={{ color: 'var(--cream)' }}
             >
-              Let's Begin a{' '}
-              <em style={{ color: 'var(--petal)' }}>Sacred Conversation</em>
+              Let's Begin a <em style={{ color: 'var(--petal)' }}>Sacred Conversation</em>
             </h3>
             <p
               className="font-cormorant text-xl leading-relaxed mb-10"
@@ -230,7 +252,7 @@ export default function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <h3
                     className="font-cinzel text-lg tracking-widest uppercase mb-6"
                     style={{ color: 'var(--gold)' }}
@@ -312,12 +334,24 @@ export default function Contact() {
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="btn-primary w-full flex items-center justify-center gap-2"
+                    disabled={isSending}
+                    whileHover={!isSending ? { scale: 1.02 } : {}}
+                    whileTap={!isSending ? { scale: 0.98 } : {}}
+                    className={`btn-primary w-full flex items-center justify-center gap-2 ${
+                      isSending ? 'opacity-70 cursor-not-allowed' : ''
+                    }`}
                   >
-                    <Send size={16} />
-                    Send Message
+                    {isSending ? (
+                      <>
+                        <Loader2 className="animate-spin" size={16} />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        Send Message
+                      </>
+                    )}
                   </motion.button>
 
                   <p

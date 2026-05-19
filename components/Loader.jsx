@@ -57,34 +57,22 @@ export default function Loader() {
             style={{ border: '1px solid rgba(212,175,55,0.04)' }}
           />
 
-          {/* Brand mark */}
+          {/* Brand Logo Container */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: 'backOut' }}
-            className="relative z-10 text-center mb-8"
+            className="relative z-10 text-center mb-6"
           >
-            {/* Flame icon */}
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
+            {/* Your Logo */}
+            <motion.img
+              src="/logo.png" // 👈 Replace with your actual logo path (SVG or PNG)
+              alt="Logo"
+              animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="text-5xl mb-4"
-              style={{ filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.8))' }}
-            >
-              🪔
-            </motion.div>
-            <div
-              className="font-cinzel text-2xl tracking-[0.4em] uppercase mb-1"
-              style={{ color: 'var(--gold)' }}
-            >
-              Sugandhit
-            </div>
-            <div
-              className="font-cormorant italic text-sm tracking-[0.3em]"
-              style={{ color: 'rgba(212,175,55,0.5)' }}
-            >
-              Sacred Fragrances
-            </div>
+              className="w-24 h-24 object-contain mx-auto" // 👈 Adjust width/height here if needed
+              style={{ filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.6))' }}
+            />
           </motion.div>
 
           {/* Progress bar */}
