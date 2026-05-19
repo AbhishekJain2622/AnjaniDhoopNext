@@ -23,23 +23,24 @@ export default function Contact() {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91 98765 43210',
+      value: ['+91 6265854399,8109313338'],
       sub: 'Mon–Sat, 9am–6pm IST',
     },
+    
     {
       icon: Mail,
       label: 'Email',
-      value: 'info@sugandhit.com',
+      value: 'ajanidhoop@gmail.com',
       sub: 'We reply within 24 hours',
     },
     {
       icon: MapPin,
       label: 'Address',
-      value: '14, Incense Marg, Kanpur',
-      sub: 'Uttar Pradesh 208001, India',
+      value: 'Kishori Sadan Ratanganj',
+      sub: 'Bijawar Dist. Chhatarpur, 471405,Madhya Pradesh, India',
     },
   ];
-
+ 
   return (
     <section
       id="contact"

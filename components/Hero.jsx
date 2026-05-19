@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
 // Smoke particle component
@@ -99,7 +100,7 @@ export default function Hero() {
         y: 0,
         filter: 'blur(0px)',
         duration: 1.4,
-        delay: 1.8,
+        delay: 1,
         ease: 'power3.out',
       }
     );
@@ -120,7 +121,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[85vh] md:min-h-[92vh] pt-28 md:pt-36 flex items-center justify-center overflow-hidden"
       style={{ background: 'var(--black-rich)' }}
     >
       {/* Animated gradient background */}
@@ -182,33 +183,38 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        {/* Pre-title */}
+        
+        {/* LOGO */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          className="mb-6 ornament max-w-xs mx-auto"
+          transition={{ duration: 0.8 }}
+          className="flex items-center justify-center gap-4 mb-8"
         >
-          <span
-            className="font-cinzel text-xs tracking-[0.5em] uppercase"
-            style={{ color: 'var(--gold)' }}
-          >
-            Est. Since 1985
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={120}
+            height={80}
+            className="object-contain"
+            priority
+          />
+
+        
         </motion.div>
 
         {/* Main title */}
         <div ref={titleRef} style={{ opacity: 0 }}>
           <h1 className="font-playfair font-bold leading-none mb-4">
             <span
-              className="block text-6xl md:text-8xl lg:text-9xl gradient-text-gold"
+              className="block text-5xl md:text-7xl lg:text-8xl gradient-text-gold"
               style={{ lineHeight: 1.05 }}
             >
-              Divine
+             Anjani Dhoop
             </span>
 
             <span
-              className="block text-6xl md:text-8xl lg:text-9xl"
+              className="block text-5xl md:text-7xl lg:text-8xl"
               style={{
                 color: 'var(--cream)',
                 lineHeight: 1.05,
@@ -218,7 +224,7 @@ export default function Hero() {
             </span>
 
             <span
-              className="block text-4xl md:text-5xl lg:text-6xl italic"
+              className="block text-3xl md:text-4xl lg:text-5xl italic"
               style={{
                 color: 'var(--petal)',
                 lineHeight: 1.2,
@@ -234,8 +240,8 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2.2 }}
-          className="font-cormorant text-xl md:text-2xl mt-8 mb-12 max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 1, delay: 1.5 }}
+          className="font-cormorant text-lg md:text-xl mt-6 mb-8 max-w-2xl mx-auto leading-relaxed"
           style={{ color: 'rgba(245,237,214,0.7)' }}
         >
           Crafted from the purest flowers, resins, and sacred woods —
@@ -247,7 +253,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
           className="flex flex-col sm:flex-row gap-4 items-center justify-center"
         >
           <motion.button
@@ -260,7 +266,7 @@ export default function Hero() {
             Explore Collection
           </motion.button>
 
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             className="btn-outline"
@@ -271,15 +277,15 @@ export default function Hero() {
             }
           >
             Our Story
-          </motion.button>
+          </motion.button> */}
         </motion.div>
 
         {/* Product badges */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3 }}
-          className="flex flex-wrap gap-3 justify-center mt-12"
+          transition={{ delay: 2.2 }}
+          className="flex flex-wrap gap-3 justify-center mt-10"
         >
           {[
             'Shahi Gulab',
@@ -292,29 +298,15 @@ export default function Hero() {
               key={name}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 3 + i * 0.1 }}
+              transition={{ delay: 2.2 + i * 0.1 }}
               className="glass px-4 py-1.5 rounded-full font-jost text-xs tracking-widest uppercase"
               style={{ color: 'rgba(212,175,55,0.8)' }}
             >
               {name}
             </motion.span>
           ))}
-
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3.6 }}
-            className="font-jost text-xs tracking-widest"
-            style={{
-              color: 'rgba(212,175,55,0.4)',
-              alignSelf: 'center',
-            }}
-          >
-            +7 more
-          </motion.span>
-        </motion.div>
+        </motion.div> */}
       </div>
-
       {/* Large incense stick visual */}
       <motion.div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
@@ -322,13 +314,13 @@ export default function Hero() {
         animate={{ opacity: 0.3, scaleY: 1 }}
         style={{ originY: 1 }}
         transition={{
-          delay: 1,
+          delay: 0.5,
           duration: 1.5,
           ease: 'easeOut',
         }}
       >
         <div
-          className="w-0.5 h-48 mx-auto"
+          className="w-0.5 h-40 mx-auto"
           style={{
             background:
               'linear-gradient(to top, var(--gold), transparent)',
@@ -348,7 +340,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.button
         onClick={handleScroll}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         animate={{ y: [0, 8, 0] }}
         transition={{
           duration: 2,
@@ -357,15 +349,16 @@ export default function Hero() {
         }}
         style={{ color: 'rgba(212,175,55,0.5)' }}
       >
-        <span
+        {/* <span
           className="font-cinzel text-xs tracking-[0.3em] uppercase"
           style={{ color: 'rgba(212,175,55,0.4)' }}
         >
           Scroll
-        </span>
+        </span> */}
 
         <ChevronDown size={16} />
       </motion.button>
+      
     </section>
   );
 }
