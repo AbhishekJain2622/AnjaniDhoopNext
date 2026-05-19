@@ -132,57 +132,59 @@ export default function Footer() {
             </p>
 
             {/* Social Icons */}
-            <div className="flex gap-4">
-              {[
-                {
-                  icon: Instagram,
-                  label: 'Instagram',
-                },
-                {
-                  icon: Facebook,
-                  label: 'Facebook',
-                },
-                {
-                  icon: Youtube,
-                  label: 'YouTube',
-                },
-                {
-                  icon: Twitter,
-                  label: 'Twitter',
-                },
-              ].map(({ icon: Icon, label }) => (
-                <motion.button
-                  key={label}
-                  whileHover={{
-                    scale: 1.12,
-                    y: -3,
-                  }}
-                  className="
-                    w-11
-                    h-11
-                    rounded-xl
-                    flex
-                    items-center
-                    justify-center
-                    transition-all
-                    duration-300
-                  "
-                  style={{
-                    background:
-                      'rgba(212,175,55,0.08)',
-
-                    border:
-                      '1px solid rgba(212,175,55,0.15)',
-
-                    color:
-                      'rgba(212,175,55,0.6)',
-                  }}
-                  title={label}
-                >
-                  <Icon size={17} />
-                </motion.button>
-              ))}
-            </div>
+          <div className="flex gap-4">
+  {[
+    {
+      icon: Instagram,
+      label: "Instagram",
+      link: "https://www.instagram.com/anjanidhoop?igsh=MTA0cnNuYng3eXcweg%3D%3D&utm_source=qr",
+    },
+    {
+      icon: Facebook,
+      label: "Facebook",
+      link: "https://www.facebook.com/share/1HRpXbBH8v/?mibextid=wwXIfr",
+    },
+    {
+      icon: Youtube,
+      label: "YouTube",
+      link: "https://youtube.com/",
+    },
+    // {
+    //   icon: Twitter,
+    //   label: "Twitter",
+    //   link: "https://twitter.com/",
+    // },
+  ].map(({ icon: Icon, label, link }) => (
+    <motion.a
+      key={label}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{
+        scale: 1.12,
+        y: -3,
+      }}
+      className="
+        w-11
+        h-11
+        rounded-xl
+        flex
+        items-center
+        justify-center
+        transition-all
+        duration-300
+      "
+      style={{
+        background: "rgba(212,175,55,0.08)",
+        border: "1px solid rgba(212,175,55,0.15)",
+        color: "rgba(212,175,55,0.6)",
+      }}
+      title={label}
+    >
+      <Icon size={17} />
+    </motion.a>
+  ))}
+</div>
           </div>
 
           {/* Footer Links */}
@@ -240,97 +242,7 @@ export default function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div
-          className="
-            py-8
-            px-8
-            rounded-[28px]
-            mb-12
-          "
-          style={{
-            background:
-              'linear-gradient(135deg, rgba(123,28,28,0.3) 0%, rgba(91,44,111,0.2) 100%)',
-
-            border:
-              '1px solid rgba(212,175,55,0.1)',
-          }}
-        >
-          <div
-            className="
-              flex
-              flex-col
-              md:flex-row
-              gap-6
-              items-center
-              justify-between
-            "
-          >
-            <div>
-              <h4
-                className="
-                  font-playfair
-                  text-2xl
-                  font-semibold
-                  mb-1
-                "
-                style={{
-                  color: 'var(--cream)',
-                }}
-              >
-                Stay Connected with the Sacred
-              </h4>
-
-              <p
-                className="
-                  font-cormorant
-                  text-base
-                  italic
-                "
-                style={{
-                  color:
-                    'rgba(245,237,214,0.5)',
-                }}
-              >
-                Receive fragrance wisdom,
-                spiritual stories & exclusive
-                offers.
-              </p>
-            </div>
-
-            {/* Input */}
-            <div
-              className="
-                flex
-                gap-3
-                w-full
-                md:w-auto
-              "
-            >
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="
-                  luxury-input
-                  md:w-72
-                "
-                style={{
-                  borderRadius: '6px',
-                }}
-              />
-
-              <button
-                className="
-                  btn-primary
-                  whitespace-nowrap
-                  rounded-sm
-                "
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
+      
         {/* Bottom Bar */}
         <div
           className="

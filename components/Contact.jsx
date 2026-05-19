@@ -21,9 +21,9 @@ export default function Contact() {
     setIsSending(true);
 
     // Replace these placeholder strings with your actual EmailJS keys from your EmailJS Dashboard
-    const SERVICE_ID = 'YOUR_SERVICE_ID';
-    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-    const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+    const SERVICE_ID = 'service_o15nwba';
+    const TEMPLATE_ID = 'template_5x2x8xh';
+    const PUBLIC_KEY = 'BNFK3ot3fcRVlu9US';
 
     emailjs
       .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, {
@@ -188,30 +188,49 @@ export default function Contact() {
               >
                 Follow Our Journey
               </div>
-              <div className="flex gap-3">
-                {[
-                  { icon: Instagram, label: 'Instagram' },
-                  { icon: Facebook, label: 'Facebook' },
-                  { icon: Youtube, label: 'YouTube' },
-                  { icon: Twitter, label: 'Twitter' },
-                ].map(({ icon: SocIcon, label }) => (
-                  <motion.button
-                    key={label}
-                    whileHover={{ scale: 1.15, y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
-                    style={{
-                      background: 'rgba(212,175,55,0.08)',
-                      border: '1px solid rgba(212,175,55,0.15)',
-                      color: 'rgba(212,175,55,0.6)',
-                    }}
-                    title={label}
-                    data-cursor="hover"
-                  >
-                    <SocIcon size={16} />
-                  </motion.button>
-                ))}
-              </div>
+             <div className="flex gap-3">
+  {[
+    {
+      icon: Instagram,
+      label: "Instagram",
+      link: "https://www.instagram.com/anjanidhoop?igsh=MTA0cnNuYng3eXcweg%3D%3D&utm_source=qr",
+    },
+    {
+      icon: Facebook,
+      label: "Facebook",
+      link: "https://www.facebook.com/share/1HRpXbBH8v/?mibextid=wwXIfr",
+    },
+    {
+      icon: Youtube,
+      label: "YouTube",
+      link: "https://youtube.com/",
+    },
+    // {
+    //   icon: Twitter,
+    //   label: "Twitter",
+    //   link: "https://twitter.com/",
+    // },
+  ].map(({ icon: SocIcon, label, link }) => (
+    <motion.a
+      key={label}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ scale: 1.15, y: -3 }}
+      whileTap={{ scale: 0.95 }}
+      className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
+      style={{
+        background: "rgba(212,175,55,0.08)",
+        border: "1px solid rgba(212,175,55,0.15)",
+        color: "rgba(212,175,55,0.6)",
+      }}
+      title={label}
+      data-cursor="hover"
+    >
+      <SocIcon size={16} />
+    </motion.a>
+  ))}
+</div>
             </div>
           </motion.div>
 

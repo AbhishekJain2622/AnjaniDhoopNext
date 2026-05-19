@@ -1,10 +1,21 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Eye } from 'lucide-react';
+import { MessageSquare, Eye } from 'lucide-react'; // Changed ShoppingBag to MessageSquare for context
 
 export default function ProductCard({ product, index }) {
   const [hovered, setHovered] = useState(false);
   const [flipped, setFlipped] = useState(false);
+
+  // Handles smooth scrolling to the contact section
+  const handleConnectWithDealer = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Fallback if the element isn't present on the current layout/view
+      window.location.href = '#contact';
+    }
+  };
 
   return (
     <motion.div
@@ -212,7 +223,7 @@ export default function ProductCard({ product, index }) {
           </div>
         </div>
 
-        {/* Hover CTA */}
+        {/* Hover CTA Container */}
         <AnimatePresence>
           {hovered && (
             <motion.div
@@ -222,7 +233,9 @@ export default function ProductCard({ product, index }) {
               transition={{ duration: 0.25 }}
               className="px-6 pb-6 flex gap-3"
             >
+              {/* Connect with Dealer Button */}
               <button
+                onClick={handleConnectWithDealer}
                 className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg font-cinzel text-xs tracking-widest uppercase transition-all duration-200"
                 style={{
                   background: `linear-gradient(135deg, ${product.theme.primary}, ${product.theme.secondary})`,
@@ -230,9 +243,10 @@ export default function ProductCard({ product, index }) {
                   border: `1px solid ${product.theme.accent}30`,
                 }}
               >
-                <ShoppingBag size={14} />
-                Add to Cart
+                <MessageSquare size={14} />
+                Connect with Dealer
               </button>
+              
               <button
                 className="w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200"
                 style={{
