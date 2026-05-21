@@ -191,14 +191,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="flex items-center justify-center gap-4 mb-8"
         >
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={120}
-            height={80}
-            className="object-contain"
-            priority
-          />
+          
 
         
         </motion.div>
